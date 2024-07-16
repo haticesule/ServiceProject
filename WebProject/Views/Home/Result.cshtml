@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Müşteri Onay";
+    Layout = null;
+}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .btnConfirm, .btnDelete {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        transition: background-color 0.3s;
+    }
+
+        .btnConfirm:hover, .btnDelete:hover {
+            background-color: #45a049;
+        }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<h1>Yolcu İstekleri</h1>
+
+<table>
+    <thead>
+        <tr>
+           @*  <th>Request ID</th>
+            <th>Customer ID</th>
+            <th>Neighborhood ID</th> *@
+            <th>Yolcu Ad-Soyad</th>
+            <th>Yolcu Telefon Numarsı</th>
+            <th>Yolcu Doğum Tarihi</th>
+            <th>İl</th>
+            <th>İlçe</th>
+            <th>Mahalle</th>
+            <th>Destination Town</th>
+            <th>Destination Locality</th>
+            <th>Destination Neighborhood</th>
+            <th>Booking Time</th>
+            <th>Booking Date</th>
+        </tr>
+    </thead>
+    <tbody>
+   
+    </tbody>
+</table>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "https://localhost:44359/api/Request/GetAllRequest/",
+            success: function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var row = '<tr>' +
+                        // '<td>' + data[i].requestId + '</td>' +
+                        //  '<td>' + data[i].customerId + '</td>' +
+                        //  '<td>' + data[i].neighborhoodId + '</td>' +
+                        '<td>' + data[i].name + '</td>' +
+                        '<td>' + data[i].phoneNumber + '</td>' +
+                        '<td>' + data[i].bday + '</td>' +
+                        '<td>' + data[i].city + '</td>' +
+                        '<td>' + data[i].town + '</td>' +
+                        '<td>' + data[i].neighborhood + '</td>' +
+                        '<td>' + data[i].destinationTown + '</td>' +
+                        '<td>' + data[i].destinationLocality + '</td>' +
+                        '<td>' + data[i].destinationNeighborhood + '</td>' +
+                        '<td>' + data[i].bookingTime + '</td>' +
+                        '<td>' + data[i].bookingDate + '</td>' +
+                        '<td><button class="btnConfirm" data-requestId="' + data[i].requestId + '">Onayla</button></td>' +
+                        '<td><button class="btnDelete" data-requestId="' + data[i].requestId + '">Reddet</button></td>' +
+                        '</tr>';
+                    $('table tbody').append(row);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+        $(document).ready(function () {
+            $('table').on('click', '.btnConfirm', function () {
+                var requestId = $(this).data('requestid');
+                var request = {
+                    "requestId": requestId,
+
+                }
+                var clickedButton = $(this);
+
+                $.ajax({
+                    url: 'https://localhost:44359/api/Request/Confirm/',
+                    method: 'POST',
+                    data: JSON.stringify(request), 
+                    contentType: 'application/json',
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Rezervasyon onaylandı!'); 
+                            clickedButton.closest('tr').remove();
+                            deleteRequest(requestId);
+                        } else {
+                            alert('Rezervasyon onayı başarısız oldu!');
+                            console.error('Onaylama hatası:', response.error); 
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Bir hata oluştu.'); 
+                        console.error('AJAX hatası:', error);
+                    }
+                });
+            });
+        });
+
+        function deleteRequest(requestId) {
+            $.ajax({
+                url: 'https://localhost:44359/api/Request/DeleteOneRequest/' + requestId, 
+                method: 'DELETE', 
+                success: function (response) {
+                    if (response.success) {
+                        console.log('Rezervasyon başarıyla silindi.');
+                    } else {
+                        console.error('Rezervasyon silinirken bir hata oluştu:', response.error);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Rezervasyon silinirken bir hata oluştu:', error);
+                }
+            });
+        }
+
+
+    });
+
+</script>

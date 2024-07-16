@@ -1,0 +1,444 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>SEREZ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+
+
+    * {
+        margin: 0px auto;
+        padding: 0px;
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+    }
+
+    .cotn_principal {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        height: 100%;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
+        background: #cfd8dc; /* Old browsers */
+        background: -moz-linear-gradient( -45deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100% ); /* FF3.6-15 */
+        background: -webkit-linear-gradient( -45deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100% ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient( 135deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100% ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', endColorstr='#b0bec5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+
+    .cont_centrar {
+        display: flex;
+        align-self: center;
+        width: 100%;
+    }
+
+    .cont_customer {
+        position: relative;
+        width:840px;
+    }
+
+    .cont_back_info {
+        position: relative;
+        float: left;
+        width: 840px;
+        height: 480px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .cont_forms {
+        position: absolute;
+        overflow: hidden;
+        top: 0px;
+        left: 0px;
+        width: 320px;
+        height: 280px;
+        background-color: #eee;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+
+    .cont_img_back_grey {
+        position: absolute;
+        width: 950px;
+        top: -80px;
+        left: -116px;
+    }
+
+        .cont_img_back_grey > img {
+            width: 100%;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+            opacity: 0.2;
+            animation-name: animar_fondo;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+    .cont_img_back_ {
+        position: absolute;
+        width: 950px;
+        top: -80px;
+        left: -116px;
+    }
+
+        .cont_img_back_ > img {
+            width: 100%;
+            opacity: 0.3;
+            animation-name: animar_fondo;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+
+    .cont_info_cstmr_drvr {
+        position: absolute;
+        width: 840px;
+        height: 480px;
+        top: 0px;
+        z-index: 1;
+    }
+
+    .col_md_customer {
+        position: relative;
+        float: left;
+        width: 100%;
+
+    }
+
+        .col_md_customer > h2 {
+            font-weight: 400;
+            margin-top: 70px;
+            color: #757575;
+        }
+
+        .col_md_customer > p {
+            font-weight: 400;
+            margin-top: 15px;
+            width: 80%;
+            color: #37474f;
+        }
+
+    .btn_customer {
+        background-color: #003366;
+        border: none;
+        padding: 10px;
+        width: 200px;
+        border-radius: 3px;
+        box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+        color: #fff;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .col_md_driver {
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+
+    .cont_ba_opcitiy > h2 {
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .cont_ba_opcitiy > p {
+        font-weight: 400;
+        margin-top: 15px;
+        color: #fff;
+    }
+
+    .cont_ba_opcitiy {
+        position: relative;
+        background-color: rgba(0, 51, 102, 0.5);
+        width: 80%;
+        border-radius: 3px;
+        margin-top: 60px;
+        padding: 15px 0px;
+    }
+
+        .cont_ba_opcitiy1 > h2 {
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .cont_ba_opcitiy1 > p {
+            font-weight: 400;
+            margin-top: 15px;
+            color: #fff;
+        }
+
+    .cont_ba_opcitiy1 {
+        position: relative;
+        background-color: rgba(101, 0, 11, 0.5);
+        width: 80%;
+        border-radius: 3px;
+        margin-top: 60px;
+        padding: 15px 0px;
+    }
+
+    .btn_driver {
+        background-color: #65000b;
+        border: none;
+        padding: 10px;
+        width: 200px;
+        border-radius: 3px;
+        box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+        color: #fff;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+
+     html {
+
+     font-family: 'Josefin Slab', 'Comfortaa', sans-serif;
+     font-size: 1.2em;
+     background: #eeee;
+     }
+
+     ul {
+         position: relative;
+         width: 27em;
+         height: 0.5em;
+         margin: 20px auto;
+         padding: 5px;
+         white-space: nowrap;
+     }
+
+     ul li {
+         display: inline;
+         text-align: center;
+     }
+
+         ul li a {
+             position: relative;
+             top: 0;
+             left: 0;
+             right: 25em;
+             bottom: 0;
+             display: inline-block;
+             -moz-box-sizing: border-box;
+             box-sizing: border-box;
+             padding: .2em .1em;
+             color: #09C;
+             text-decoration: none;
+             text-shadow: 0 1px 0 white;
+             -webkit-transition: width .3s,right .3s;
+             -moz-transition: width .3s,right .3s;
+             -o-transition: width .3s,right .3s;
+             transition: width .3s,right .3s;
+         }
+
+         ul li:nth-child(1) a {
+             width: 2em;
+         }
+
+         ul li:nth-child(2) a {
+             width: 4em;
+         }
+
+         ul li:nth-child(3) a {
+             width: 4em;
+         }
+
+         ul li:nth-child(4) a {
+             width: 7em;
+         }
+
+         ul li:nth-child(5) a {
+             width: 5em;
+         }
+
+         ul li:last-child a::after {
+             content: "";
+             position: absolute;
+             right: inherit;
+             bottom: -3px;
+             width: inherit;
+             height: 3px;
+             background: #ccc;
+             pointer-events: none;
+             -webkit-transition: all .5s ease;
+             -moz-transition: all .5s ease;
+             -o-transition: all .5s ease;
+             transition: all .5s ease;
+         }
+
+         ul li:nth-child(1) ~ li:last-child a {
+             right: 21em;
+             width: 2em;
+         }
+
+         ul li:nth-child(2):hover ~ li:last-child a {
+             right: 17em;
+             width: 4em;
+         }
+
+         ul li:nth-child(3):hover ~ li:last-child a {
+             right: 13em;
+             width: 4em;
+         }
+
+         ul li:nth-child(4):hover ~ li:last-child a {
+             right: 6em;
+             width: 7em;
+         }
+
+         ul li:nth-child(5):last-child:hover a {
+             right: 0;
+             width: 5em;
+         }
+
+         ul li:hover ~ li:last-child a::after,
+         ul li:last-child:hover a::after {
+                background: #65000b;
+         }
+
+         ul li:last-child a {
+             min-width: 5em;
+             max-width: 5em;
+         }
+
+         ul li a:hover,
+         ul li a:focus {
+                color: #65000b;
+             background-color: rgba(255,255,255,.6);
+             -webkit-transition: width .3s,right .3s,background-color .3s;
+             -moz-transition: width .3s,right .3s,background-color .3s;
+             -o-transition: width .3s,right .3s,background-color .3s;
+             transition: width .3s,right .3s,background-color .3s;
+         }
+
+         ul li a:focus {
+                border-bottom: 3px solid #65000b;
+         }  bu kodllara iyice bak
+
+         .navbar {
+            text-align: center;
+            margin: 0 auto;
+            padding: 0px 0;
+        }
+
+        .navbar-title {
+            font-size: 1.5em;
+            margin: 0;
+            padding: 0px 0;
+            color: #09C;
+        }
+
+</style>
+
+<body>
+    <div class="navbar">
+        
+        <ul>
+            <li><a href="#"> &#10047; </a></li>
+            <li><a asp-controller="Home" asp-action="Driver"> Servis </a></li>
+            <li><a asp-controller="Home" asp-action="Index"> Yolcu </a></li>
+            <li><a asp-controller="Home" asp-action="Admin"> Ana Sayfa </a></li>
+            <li><a asp-controller="Home" asp-action="Driver">Hakkımızda </a></li>
+        </ul>
+    </div>
+    <div class="cotn_principal">
+        <div class="cont_centrar">
+            <div class="cont_customer">
+                <div class="cont_info_cstmr_drvr">
+                    <div class="col_md_customer">
+                        <div class="cont_ba_opcitiy">
+                            <h2>YOLCU</h2>
+                            <p>Servis üyeliği yapmak için bilgilerinizi girebilirsiniz.</p>
+                            <button id="buttonCustomer" class="btn_customer" type="button" onclick= "submitCustomer()">YOLCU</button>
+                        </div>
+                    </div>
+                    <div class="col_md_driver">
+                        <div class="cont_ba_opcitiy1">
+                            <h2>SÜRÜCÜ</h2>
+                            <p>Servis şoförü olarak giriş yapabilir ve sisteme kayıt olabilirsiniz.</p>
+                            <button id="buttonDriver" class="btn_driver" type="button" onclick= "submitDriver()">SÜRÜCÜ</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_back_info">
+                    <div class="cont_img_back_grey">
+                        <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function resizeHeaderOnScroll() {
+          const distanceY = window.pageYOffset || document.documentElement.scrollTop,
+          shrinkOn = 200,
+          headerEl = document.getElementById('js-header');
+  
+          if (distanceY > shrinkOn) {
+            headerEl.classList.add("smaller");
+          } else {
+            headerEl.classList.remove("smaller");
+          }
+        }
+
+        window.addEventListener('scroll', resizeHeaderOnScroll);
+
+
+        function submitCustomer() {
+            window.location.href = '@Url.Action("Index", "Home")';
+            sendAdminType('YOLCU');
+        }
+
+        function submitDriver() {
+            window.location.href = '@Url.Action("Driver", "Home")';
+            sendAdminType('SÜRÜCÜ');
+        }
+
+     
+
+        function sendAdminType(adminType) {
+            var requestData = {
+                TypeName: adminType
+            };
+
+            $.ajax({
+                url: 'https://localhost:44359/api/AdminType',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function (response) {
+                    console.log('İstek başarılı:', response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('İstek hatası:', error);
+                }
+            });
+        }
+
+       
+
+    </script>
+</body>
+
+</html>
+

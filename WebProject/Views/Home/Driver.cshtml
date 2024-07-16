@@ -1,0 +1,780 @@
+﻿@{
+    ViewData["Title"] = "Driver Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<style>
+    
+    * {
+      margin: 0px auto;
+      padding: 0px;
+      text-align: center;
+      font-family: "Open Sans", sans-serif;
+    }
+   
+
+    .cotn_principal {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      height: 100%;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
+      background: #cfd8dc; /* Old browsers */
+      background: -moz-linear-gradient(
+        -45deg,
+        #cfd8dc 0%,
+        #607d8b 100%,
+        #b0bec5 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        -45deg,
+        #cfd8dc 0%,
+        #607d8b 100%,
+        #b0bec5 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        135deg,
+        #cfd8dc 0%,
+        #607d8b 100%,
+        #b0bec5 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', endColorstr='#b0bec5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+
+    .cont_centrar {
+      display: flex;
+      align-self: center;
+      width: 100%;
+    }
+
+    .cont_login {
+      position: relative;
+      width: 640px;
+    }
+
+    .cont_back_info {
+      position: relative;
+      float: left;
+      width: 640px;
+      height: 280px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .cont_forms {
+      position: absolute;
+      overflow: hidden;
+      top: 0px;
+      left: 0px;
+      width: 320px;
+      height: 280px;
+      background-color: #eee;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_forms_active_login {
+      box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+      height: 420px;
+      top: -60px;
+      left: 0px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_forms_active_sign_up {
+      box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+      height: 420px;
+      top: -60px;
+      left: 320px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_img_back_grey {
+      position: absolute;
+      width: 950px;
+      top: -80px;
+      left: -116px;
+    }
+
+    .cont_img_back_grey > img {
+      width: 100%;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+      opacity: 0.2;
+      animation-name: animar_fondo;
+      animation-duration: 20s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .cont_img_back_ {
+      position: absolute;
+      width: 950px;
+      top: -80px;
+      left: -116px;
+    }
+
+    .cont_img_back_ > img {
+      width: 100%;
+      opacity: 0.3;
+      animation-name: animar_fondo;
+      animation-duration: 20s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .cont_forms_active_login > .cont_img_back_ {
+      top: -20px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_forms_active_sign_up > .cont_img_back_ {
+      top: -20px;
+      left: -435px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_info_log_sign_up {
+      position: absolute;
+      width: 640px;
+      height: 280px;
+      top: 0px;
+      z-index: 1;
+    }
+
+    .col_md_login {
+      position: relative;
+      float: left;
+      width: 50%;
+    }
+
+    .col_md_login > h2 {
+      font-weight: 400;
+      margin-top: 70px;
+      color: #757575;
+    }
+
+    .col_md_login > p {
+      font-weight: 400;
+      margin-top: 15px;
+      width: 80%;
+      color: #37474f;
+    }
+
+    .btn_login {
+        background-color: #65000b;
+      border: none;
+      padding: 10px;
+      width: 200px;
+      border-radius: 3px;
+      box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+      color: #fff;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .col_md_sign_up {
+      position: relative;
+      float: left;
+      width: 50%;
+    }
+
+    .cont_ba_opcitiy > h2 {
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .cont_ba_opcitiy > p {
+      font-weight: 400;
+      margin-top: 15px;
+      color: #fff;
+    }
+  
+    .cont_ba_opcitiy {
+      position: relative;
+      background-color: rgba(101, 0, 11, 0.5);
+      width: 80%;
+      border-radius: 3px;
+      margin-top: 60px;
+      padding: 15px 0px;
+    }
+
+    .btn_sign_up {
+        background-color: #65000b;
+      border: none;
+      padding: 10px;
+      width: 200px;
+      border-radius: 3px;
+      box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+      color: #fff;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .cont_forms_active_sign_up {
+      z-index: 2;
+    }
+
+     keyframes animar_fondo {
+      from {
+        -webkit-transform: scale(1) translate(0px);
+        -moz-transform: scale(1) translate(0px);
+        -ms-transform: scale(1) translate(0px);
+        -o-transform: scale(1) translate(0px);
+        transform: scale(1) translate(0px);
+      }
+      to {
+        -webkit-transform: scale(1.5) translate(50px);
+        -moz-transform: scale(1.5) translate(50px);
+        -ms-transform: scale(1.5) translate(50px);
+        -o-transform: scale(1.5) translate(50px);
+        transform: scale(1.5) translate(50px);
+      }
+    }
+    .keyframes identifier {
+      from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+      }
+      to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+    }
+    .keyframes identifier {
+      from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+      }
+      to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+    }
+    keyframes identifier {
+      from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+      }
+      to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+    }
+    .cont_form_login {
+      position: absolute;
+      opacity: 0;
+      border-radius:5px
+      display: none;
+      width: 320px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_forms_active_login {
+      z-index: 2;
+    }
+
+    .cont_form_sign_up {
+      position: absolute;
+      width: 320px;
+      float: left;
+      opacity: 0;
+      border-radius:5px;
+      display: none;
+      overflow-y: auto;
+      max-height: 400px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .cont_form_sign_up > input {
+      text-align: left;
+      padding: 15px 5px;
+      margin-left: 10px;
+      margin-top: 20px;
+      width: 260px;
+      border: none;
+      color: #757575;
+    }
+
+    .cont_form_sign_up > h2 {
+      margin-top: 50px;
+      font-weight: 400;
+      color: #757575;
+    }
+
+    .cont_form_login > input {
+      padding: 15px 5px;
+      margin-left: 10px;
+      margin-top: 20px;
+      width: 260px;
+      border: none;
+      text-align: left;
+      color: #757575;
+    }
+
+    .cont_form_login > h2 {
+      margin-top: 110px;
+      font-weight: 400;
+      color: #757575;
+    }
+    .cont_form_login > a,
+    .cont_form_sign_up > a {
+      color: #757575;
+      position: relative;
+      float: left;
+      margin: 10px;
+      margin-left: 30px;
+    }
+
+    html {
+        font-family: 'Josefin Slab', 'Comfortaa', sans-serif;
+        font-size: 1.2em;
+        background: #eeee;
+    }
+
+    ul {
+        position: relative;
+        width: 27em;
+        height: 0.5em;
+        margin: 20px auto;
+        padding: 5px;
+        white-space: nowrap;
+    }
+
+        ul li {
+            display: inline;
+            text-align: center;
+        }
+
+            ul li a {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 25em;
+                bottom: 0;
+                display: inline-block;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: .2em .1em;
+                color: #09C;
+                text-decoration: none;
+                text-shadow: 0 1px 0 white;
+                -webkit-transition: width .3s,right .3s;
+                -moz-transition: width .3s,right .3s;
+                -o-transition: width .3s,right .3s;
+                transition: width .3s,right .3s;
+            }
+
+            ul li:nth-child(1) a {
+                width: 2em;
+            }
+
+            ul li:nth-child(2) a {
+                width: 4em;
+            }
+
+            ul li:nth-child(3) a {
+                width: 4em;
+            }
+
+            ul li:nth-child(4) a {
+                width: 7em;
+            }
+
+            ul li:nth-child(5) a {
+                width: 5em;
+            }
+
+            ul li:last-child a::after {
+                content: "";
+                position: absolute;
+                right: inherit;
+                bottom: -3px;
+                width: inherit;
+                height: 3px;
+                background: #ccc;
+                pointer-events: none;
+                -webkit-transition: all .5s ease;
+                -moz-transition: all .5s ease;
+                -o-transition: all .5s ease;
+                transition: all .5s ease;
+            }
+
+            ul li:nth-child(1) ~ li:last-child a {
+                right: 21em;
+                width: 2em;
+            }
+
+            ul li:nth-child(2):hover ~ li:last-child a {
+                right: 17em;
+                width: 4em;
+            }
+
+            ul li:nth-child(3):hover ~ li:last-child a {
+                right: 13em;
+                width: 4em;
+            }
+
+            ul li:nth-child(4):hover ~ li:last-child a {
+                right: 6em;
+                width: 7em;
+            }
+
+            ul li:nth-child(5):last-child:hover a {
+                right: 0;
+                width: 5em;
+            }
+
+            ul li:hover ~ li:last-child a::after,
+            ul li:last-child:hover a::after {
+                background: #65000b;
+            }
+
+            ul li:last-child a {
+                min-width: 5em;
+                max-width: 5em;
+            }
+
+            ul li a:hover,
+            ul li a:focus {
+                color: #65000b;
+                background-color: rgba(255,255,255,.6);
+                -webkit-transition: width .3s,right .3s,background-color .3s;
+                -moz-transition: width .3s,right .3s,background-color .3s;
+                -o-transition: width .3s,right .3s,background-color .3s;
+                transition: width .3s,right .3s,background-color .3s;
+            }
+
+            ul li a:focus {
+                border-bottom: 3px solid #65000b;
+            }
+
+ 
+
+    .navbar {
+        text-align: center;
+        margin: 0 auto;
+        padding: 0px 0;
+    }
+
+    .navbar-title {
+        font-size: 1.5em;
+        margin: 0;
+        padding: 0px 0;
+        color: #09C;
+    }
+
+
+</style>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#"> &#10047; </a></li>
+            <li><a asp-controller="Home" asp-action="Driver"> Servis </a></li>
+            <li><a asp-controller="Home" asp-action="Index"> Yolcu </a></li>
+            <li><a asp-controller="Home" asp-action="Admin"> Ana Sayfa </a></li>
+            <li><a asp-controller="Home" asp-action="Driver">Hakkımızda </a></li>
+        </ul>
+    </div>
+
+    <div class="cotn_principal">
+        <div class="cont_centrar">
+             <div class="cont_login">
+                <div class="cont_info_log_sign_up">
+                    <div class="col_md_login">
+                        <div class="cont_ba_opcitiy">
+                            <h2>GİRİŞ YAP</h2>  
+                            <p>Bir hesabınız var giriş yapınız.</p> 
+                            <button class="btn_login" onclick="change_to_login()">GİRİŞ YAP</button>
+                        </div>
+                    </div>
+                    <div class="col_md_sign_up">
+                        <div class="cont_ba_opcitiy">
+                            <h2>KAYIT OL</h2>          
+                            <p>Bir hesabınız yoksa kayıt olunuz.</p>
+                            <button class="btn_sign_up" onclick="change_to_sign_up()">KAYIT OL</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_back_info">
+                    <div class="cont_img_back_grey">
+                        <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+                    </div>
+                </div>
+                <div class="cont_forms" >
+                    <div class="cont_img_back_">
+                        <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+                    </div>
+                    <div class="cont_form_login">
+                        <a href="#" onclick="hidden_login_and_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+                        <h2>GİRİŞ</h2>
+                        <input type="text" id="email" placeholder="Email" />
+                        <input type="password" id="password" placeholder="Şifre" />
+                        <button class="btn_login" id="btnLogin" onclick="change_to_login()">GİRİŞ YAP</button>
+                    </div>
+          
+                    <div class="cont_form_sign_up">
+                        <a href="#" onclick="hidden_login_and_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+                        <h2>KAYIT</h2>
+                        <input id="nameSurname" type="text" placeholder="İsim ve Soyisim" required="required" />
+                        <input id="bday" type="date" placeholder="Doğum Tarihi" required="required" />
+                        <input id="tcNumber" type="text" placeholder="Tc Kimlik Numarası" pattern="\d{11}" required="required" />
+                        <input id="phoneNumber" type="text" placeholder="Telefon Numarası" pattern="\d{11}" required="required" />
+                        <label for="male">Erkek</label>
+                        <input type="radio" id="male" name="gender" value="Erkek" required="required">
+                        <label for="female">Kadın</label>
+                        <input type="radio" id="female" name="gender" value="Kadın" required="required">
+                        <input id="plaque" type="text" placeholder="Plaka" required="required" />
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <label for="registryFile">Adli Sicil Kaydı:</label>
+                            <input type="file" id="registryFile" name="registryFile" accept=".pdf, .docx, .xlsx">
+                            <button type="submit">Yükle</button>
+                        </form>
+
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <label for="drivingLicenceFile">Sürücü Belgesi:</label>
+                            <input type="file" id="drivingLicenceFile" name="drivingLicenceFile" accept=".pdf, .docx, .xlsx">
+                            <button type="submit">Yükle</button>
+                        </form>
+
+                        <input id="serviceArea" type="text" placeholder="Hizmet Edeceği Bölge" required="required" />
+                        <input id="email_r" type="text" placeholder="Email" required="required" />
+                        <input id="password_r" type="password" placeholder="Şifre" required="required" />
+                        <input id="confirmpassword" type="password" placeholder="Tekrar Şifre" required="required" /> 
+                        <button id="btn_sin_up" class="btn_sign_up" onclick="btn_sign_up()">KAYIT OL</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+ 
+    </body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btnLogin').click(function () {
+            var data = {
+                "email": $("#email").val(),
+                "password": $("#password").val()
+            };
+            console.log(data);
+
+            $.ajax({
+                url: "https://localhost:44359/api/Admin/login/",
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.jwtToken != null) {
+                        window.location.href = "/Home/Result";
+                    }
+                    else
+                        window.location.href = "/Driver";
+                },
+                error: function () {
+                    alert("Böyle Bir Kullanıcı Bulunamadı.")
+                    console.log('Giriş İşlemi Hatalı.');
+                }
+            });
+        });
+    });
+
+    // const time_to_show_login = 400;
+    // const time_to_hidden_login = 200;
+
+    function change_to_login() {
+        document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";  
+        document.querySelector('.cont_form_login').style.display = "block";
+        document.querySelector('.cont_form_sign_up').style.opacity = "0";               
+
+        setTimeout(function () { document.querySelector('.cont_form_login').style.opacity = "1"; }, 400);
+
+        setTimeout(function(){    
+        document.querySelector('.cont_form_sign_up').style.display = "none";
+        }, 200);
+    }
+
+    const time_to_show_sign_up = 100;
+    const time_to_hidden_sign_up = 400;
+
+    function change_to_sign_up() {
+    document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_sign_up";
+    document.querySelector('.cont_form_sign_up').style.display = "block";
+    document.querySelector('.cont_form_login').style.opacity = "0";
+    
+    setTimeout(function(){  document.querySelector('.cont_form_sign_up').style.opacity = "1";
+    },time_to_show_sign_up);  
+
+    setTimeout(function(){   document.querySelector('.cont_form_login').style.display = "none";
+    },time_to_hidden_sign_up);  
+
+
+    }    
+
+    const time_to_hidden_all = 500;
+
+    function hidden_login_and_sign_up() {
+
+    document.querySelector('.cont_forms').className = "cont_forms";  
+    document.querySelector('.cont_form_sign_up').style.opacity = "0";               
+    document.querySelector('.cont_form_login').style.opacity = "0"; 
+
+    setTimeout(function(){
+    document.querySelector('.cont_form_sign_up').style.display = "none";
+    document.querySelector('.cont_form_login').style.display = "none";
+    },time_to_hidden_all);  
+    
+    }
+
+
+
+    const fileUploader = document.getElementById('file-uploader');
+
+    fileUploader.addEventListener('change', (event) => {
+        const files = event.target.files;
+        console.log('files', files);
+
+        const feedback = document.getElementById('feedback');
+        const msg = `File ${files[0].name} uploaded successfully!`;
+        feedback.innerHTML = msg;
+    });
+
+    document.getElementById('email').addEventListener('blur', function() {
+        const email = this.value;
+        if (/^[^\s]+[^\s]+\.[^\s]+$/.test(email)) {
+            fetch('/verify-email', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email})
+            }).then(response => response.json())
+              .then(data => {
+                if(data.isDeliverable) alert('Email is deliverable!');
+                else alert('Email is not deliverable.');
+            });
+        } else {
+            alert('Invalid email format.');
+        }
+    });
+
+    function btn_sign_up() {
+        var selectedGender = $("input[name='gender']:checked").val();
+
+        if (!selectedGender) {
+            console.log("Cinsiyet seçilmedi!");
+            return;
+        }
+
+        let admin = {
+            "adminId": 0,
+            "typeId": 1,
+            "adminType": {
+                "typeId": 0,
+                "typeName": "string"
+            },
+            "detailsId": 0,
+            "details": null,
+            "password": $('#password_r').val(),
+
+        };
+        
+        let details = {
+            DetailsId: 0,
+            Admin: admin,
+            Name: $('#nameSurname').val(),
+            Bday: $('#bday').val(),
+            Tc: $('#tcNumber').val(),
+            Gender: selectedGender,
+            PhoneNumber: $('#phoneNumber').val(),
+            Email: $('#email_r').val(),
+        };
+
+
+        let Driver = {
+            Details: details,
+            Plaque: $('#plaque').val(),
+            Registry: $('#registryFile')[0].files[0],
+            DrivingLicence: $('#drivingLicenceFile')[0].files[0],
+            ServiceArea: $('#serviceArea').val(),
+            
+        };
+
+
+        $.ajax({
+            url: 'https://localhost:44359/api/Driver/CreateOneDriver/',
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(Driver),
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (request, status, error) {
+                console.log(request);
+            }
+        });
+
+    }
+
+</script>
